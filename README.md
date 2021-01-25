@@ -1,5 +1,5 @@
-# Intro to Interactive visuals
+# Intro to Interactive Visuals
 
 This repository will contain the source code for the workshop.
 
-Please check back on the day of the live event.
+Please check again on the day of the event.
