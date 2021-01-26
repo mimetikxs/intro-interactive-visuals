@@ -17,5 +17,6 @@ In this part of the workshop we'll explore different ways of rendering our parti
 
 ### Useful resources
 
-* [Intro to OpenGL in openFrameworks](https://openframeworks.cc/ofBook/chapters/openGL.html)
-* [Shaders in openFrameworks](https://openframeworks.cc/ofBook/chapters/shaders.html)
+* [Intro to OpenGL in oF](https://openframeworks.cc/ofBook/chapters/openGL.html)
+* [Shaders in oF](https://openframeworks.cc/ofBook/chapters/shaders.html)
+* [VBOs in oF]() - Documentation about VBOs in openFramewokrs.
