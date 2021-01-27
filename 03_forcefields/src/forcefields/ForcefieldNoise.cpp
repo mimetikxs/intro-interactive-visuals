@@ -1,7 +1,7 @@
 #include "ForcefieldNoise.h"
 
 
-void ForcefieldNoise::update()
+void ForcefieldNoise::updateNoise()
 {
     float offset = ofGetElapsedTimef() * noiseSpeed;
     

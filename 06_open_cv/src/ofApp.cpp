@@ -20,20 +20,34 @@ void ofApp::setup()
 
     scaled.allocate(scaledWidth, scaledHeight, OF_IMAGE_COLOR);
     
+    // allocate for frame difference
     greyPrev.allocate(scaledWidth, scaledHeight, OF_IMAGE_GRAYSCALE);
     diff.allocate(scaledWidth, scaledHeight, OF_IMAGE_GRAYSCALE);
 
     // optical flow
-
-    initFlow();
-
-    flowPixels.allocate(scaledWidth, scaledHeight, 2);
-    flowTex.allocate(scaledWidth, scaledHeight, GL_RG32F);
+    initFlow();    
 
     // gui
-
     gui.setup();
-    gui.add(parameters);
+    gui.add(thresholdValue.set("threshold value", 50, 0, 255));
+    gui.add(blurSize.set("blur size", 2, 0, 15));
+    gui.setPosition(10, scaledHeight + 20);
+
+    bDrawGui = true;
+}
+
+
+void ofApp::initFlow()
+{
+    flow.setPyramidScale(.5);
+    flow.setNumLevels(4);
+    flow.setWindowSize(15);
+    flow.setNumIterations(2);
+    flow.setPolyN(7);
+    flow.setPolySigma(1.5);
+
+    flowPixels.allocate(scaledWidth, scaledHeight, 2);
+    flowTex.allocate(scaledWidth, scaledHeight, GL_RG8);
 }
 
 
@@ -47,7 +61,8 @@ void ofApp::update()
         // downscale our input
         // ---------------------
 
-        videoSource.getPixels().resizeTo(scaled, OF_INTERPOLATE_BICUBIC);
+        videoSource.getPixels().resizeTo(scaled);
+        //videoSource.getPixels().resizeTo(scaled, OF_INTERPOLATE_BICUBIC);
 
         scaled.update(); //< upload to gpu
 
@@ -57,8 +72,10 @@ void ofApp::update()
 
         ofxCv::convertColor(scaled, grey, CV_RGB2GRAY);
 
-        int blurAmount = 2;
-        ofxCv::blur(grey, 2);
+        if (blurSize > 0)
+        {
+            ofxCv::blur(grey, blurSize);
+        }
 
         grey.update(); //< upload to gpu
 
@@ -75,17 +92,20 @@ void ofApp::update()
         // threshold difference
         // ---------------------
 
-        float thresholdValue = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
         threshold(diff, diffThresh, thresholdValue);
 
         diffThresh.update(); //< upload to gpu        
 
-
+        // ---------------------
         // optical flow
-        flow.calcOpticalFlow(grey);
+        // ---------------------
+
+        flow.calcOpticalFlow(grey);        
 
         toOf(flow.getFlow(), flowPixels);
-        flowTex.loadData(flowPixels, GL_RG);
+        //ofxCv::blur(flowPixels, 10);
+
+        flowTex.loadData(flowPixels);
     }
 }
 
@@ -107,10 +127,13 @@ void ofApp::draw()
     diffThresh.draw(w*2, h);
     ofDrawBitmapStringHighlight("diff threshold", w*2+5, h+15);
 
+    flowTex.draw(w, h);
+    ofDrawBitmapStringHighlight("flow pixels", w+5, h + 15);
 
-    flow.draw(w, h);
+    flow.draw(w, h*2);
+    ofDrawBitmapStringHighlight("flow vectors", w+5, h*2 + 15);
 
-    flowTex.draw(w, h*2);
+    ofDrawBitmapString(ofToString(ofGetFrameRate()), ofGetWidth() - 70, ofGetHeight() - 20);
 
     if (bDrawGui)
     {
@@ -121,25 +144,8 @@ void ofApp::draw()
 
 void ofApp::keyPressed(int key)
 {
-}
-
-
-
-void ofApp::initFlow()
-{
-    parameters.setName("optical flow");
-    parameters.add(pyrScale.set("pyrScale", .5, 0, 1));
-    parameters.add(levels.set("levels", 4, 1, 8));
-    parameters.add(winsize.set("winsize", 8, 4, 64));
-    parameters.add(iterations.set("iterations", 2, 1, 8));
-    parameters.add(polyN.set("polyN", 7, 5, 10));
-    parameters.add(polySigma.set("polySigma", 1.5, 1.1, 2));
-    parameters.add(useFarnelGaussian.set("FARNEBACK_GAUSSIAN", false));
-
-    pyrScale.addListener(this, &ofApp::pyrScaleChange);
-    levels.addListener(this, &ofApp::levelsChange);
-    winsize.addListener(this, &ofApp::winsizeChange);
-    iterations.addListener(this, &ofApp::iterationsChange);
-    polyN.addListener(this, &ofApp::polyNChange);
-    polySigma.addListener(this, &ofApp::polySigmaChange);
+    if (key == 'g')
+    {
+        bDrawGui = !bDrawGui;
+    }
 }

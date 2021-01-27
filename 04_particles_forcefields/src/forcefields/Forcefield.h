@@ -11,8 +11,6 @@ public:
     
     void setup(int cols, int rows);
     void setup(int cols, int rows, float width, float height);
-            
-    virtual void update() {};        
 
     vec2 getForceAtCell(int col, int row);
     vec2 getForceAtPos(vec2& pos);

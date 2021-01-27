@@ -43,7 +43,7 @@ void ofApp::setup()
 
 void ofApp::update()
 {
-    forcefield.update();
+    forcefield.updateNoise();
 }
 
 

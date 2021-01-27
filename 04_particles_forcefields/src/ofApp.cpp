@@ -30,7 +30,7 @@ void ofApp::setup()
 
     // forcefield    
     forcefield.setup(width / cellSize, height / cellSize, width, height);
-    forcefield.update();
+    forcefield.updateNoise();
 
     // create system and add emitters and forces
     particleSystem.setup(width, height, 50000);
@@ -79,7 +79,7 @@ void ofApp::setup()
 
 void ofApp::update()
 {
-    forcefield.update();
+    forcefield.updateNoise();
 
     particleSystem.update();
     

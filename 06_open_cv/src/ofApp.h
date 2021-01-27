@@ -20,10 +20,7 @@ public:
     void draw();
 
     void keyPressed(int key);
-
-    ofxPanel gui;
-    bool bDrawGui = true;
-
+    
     // ---------------------
     // video source
     // ---------------------
@@ -66,22 +63,16 @@ public:
     ofTexture flowTex;
 
     void initFlow();
-    
-    // flow parameters
-    ofParameterGroup   parameters;
-    ofParameter<float> pyrScale;
-    ofParameter<int>   levels;
-    ofParameter<int>   winsize;
-    ofParameter<int>   iterations;
-    ofParameter<int>   polyN;
-    ofParameter<float> polySigma;
-    ofParameter<bool>  useFarnelGaussian;
 
-    // parameter listeners
-    void pyrScaleChange(float& val) { flow.setPyramidScale(val); }
-    void levelsChange(int& val) { flow.setNumLevels(val); }
-    void winsizeChange(int& val) { flow.setWindowSize(val); }
-    void iterationsChange(int& val) { flow.setNumIterations(val); }
-    void polyNChange(int& val) { flow.setPolyN(val); }
-    void polySigmaChange(float& val) { flow.setPolySigma(val); }
+    // ---------------------
+    // gui
+    // ---------------------
+
+    ofParameter<int> blurSize;
+    ofParameter<float> thresholdValue;
+
+    ofxPanel gui;
+
+    bool bDrawGui;
+    
 };

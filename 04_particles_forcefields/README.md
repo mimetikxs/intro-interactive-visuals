@@ -1,4 +1,4 @@
-# About emptyExample
+# Particles and force fields
 
 ![Screenshot](screenshot.png)
 
@@ -6,3 +6,7 @@
 
 * Use a noise force field to move our particles.
 * Play with parameters.
+
+### Addons used in the app
+
+* None
