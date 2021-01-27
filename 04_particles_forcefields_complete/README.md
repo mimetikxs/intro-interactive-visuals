@@ -9,4 +9,4 @@
 
 ### Addons used in the app
 
-* None
+* ofxGui (core addon)
