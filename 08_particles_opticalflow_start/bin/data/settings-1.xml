@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<group>
+	<processing>
+		<blur_size>2</blur_size>
+	</processing>
+	<forcefield>
+		<force_scale>1</force_scale>
+		<optical_flow>
+			<pyrScale>0.5</pyrScale>
+			<levels>4</levels>
+			<winsize>15</winsize>
+			<iterations>2</iterations>
+			<polyN>7</polyN>
+			<polySigma>1.5</polySigma>
+		</optical_flow>
+		<drawing>
+			<grid>0</grid>
+			<vectors>0</vectors>
+			<vector_size>50</vector_size>
+		</drawing>
+	</forcefield>
+	<particle_system>
+		<timeStep>1</timeStep>
+		<friction>0.132653</friction>
+		<mass>0.263903</mass>
+		<mass_variation>1.63265</mass_variation>
+		<life>100</life>
+		<life_variation>1</life_variation>
+	</particle_system>
+	<emitter>
+		<emit_rate>217.347</emit_rate>
+		<x>0</x>
+		<y>0</y>
+		<width>1024</width>
+		<height>768</height>
+	</emitter>
+	<wind>
+		<force>0, 0</force>
+	</wind>
+	<render_lines>
+		<color_born>1, 1, 1, 1</color_born>
+		<color_dead>0, 0, 1, 0</color_dead>
+	</render_lines>
+	<line_trails>0.725</line_trails>
+</group>
