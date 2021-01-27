@@ -357,3 +357,5 @@ bin/*
 *.plist
 Project.xcconfig
 *.xcodeproj
+
+!gitkeep
