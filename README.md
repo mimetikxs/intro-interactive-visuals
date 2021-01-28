@@ -1,5 +1,7 @@
 # Intro to Interactive Visuals
 
+![Grid](grid.png)
+
 Each example has two versions:
 
 * start -- where we begin at the workshop

@@ -359,3 +359,6 @@ Project.xcconfig
 *.xcodeproj
 
 !gitkeep
+
+#windows
+Desktop.ini

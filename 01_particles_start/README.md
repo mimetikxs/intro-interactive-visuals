@@ -25,4 +25,4 @@ A particle system is also a great example of how we can create complexity from s
 * [Memory in c++](https://openframeworks.cc/ofBook/chapters/memory.html) - Pointers, references, memory structures, arrays and vectors. A good place to start understanding the powerfull c++ memory management features.
 * [The nature of code - Forces](https://natureofcode.com/book/chapter-2-forces/#29-gravitational-attraction) - Daniel Shiffman's book is one of the best resources to begin learning about vectors, forces and simulating natural phenomena  with code.
 
-I will ofter refer to the [ofBook](https://openframeworks.cc/ofBook/chapters/foreword.html), a collaborative book from the community. If you are new to oF I recommend that you read all of it. 
+I will ofter refer to the [ofBook](https://openframeworks.cc/ofBook/chapters/foreword.html), a collaborative book from the community. If you are new to oF I recommend you read all of it. 

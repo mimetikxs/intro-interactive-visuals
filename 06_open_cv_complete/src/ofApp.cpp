@@ -18,11 +18,11 @@ void ofApp::setup()
     scaledWidth  = inputWidth * videoDownscale;
     scaledHeight = inputHeight * videoDownscale;
 
-    scaled.allocate(scaledWidth, scaledHeight, OF_IMAGE_COLOR);
+    scaled.allocate(  scaledWidth, scaledHeight, OF_IMAGE_COLOR);
     
     // allocate for frame difference
     greyPrev.allocate(scaledWidth, scaledHeight, OF_IMAGE_GRAYSCALE);
-    diff.allocate(scaledWidth, scaledHeight, OF_IMAGE_GRAYSCALE);
+    diff.allocate(    scaledWidth, scaledHeight, OF_IMAGE_GRAYSCALE);
 
     // optical flow
     initFlow();    
@@ -92,7 +92,7 @@ void ofApp::update()
         // threshold difference
         // ---------------------
 
-        threshold(diff, diffThresh, thresholdValue);
+        ofxCv::threshold(diff, diffThresh, thresholdValue);
 
         diffThresh.update(); //< upload to gpu        
 
@@ -102,7 +102,7 @@ void ofApp::update()
 
         flow.calcOpticalFlow(grey);        
 
-        toOf(flow.getFlow(), flowPixels);
+        ofxCv::toOf(flow.getFlow(), flowPixels);
         //ofxCv::blur(flowPixels, 10);
 
         flowTex.loadData(flowPixels);

@@ -4,7 +4,7 @@
 
 ### Learning Objectives
 
-* We will extend our Forcefield class with functionality to compute optical flow. 
+* We will extend our ```Forcefield``` class with functionality to compute optical flow. 
 
 ### Addons used in the app
 

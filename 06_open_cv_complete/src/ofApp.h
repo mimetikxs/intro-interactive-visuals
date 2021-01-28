@@ -39,8 +39,7 @@ public:
     SourceWebcam videoSource;
     #endif
     
-    ofImage scaled;
-    
+    ofImage scaled; 
 
     // ---------------------
     // video processing
